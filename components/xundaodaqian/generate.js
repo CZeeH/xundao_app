@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Alert, StyleSheet, Clipboard, Dimensions } from 'react-native';
 import { debounce } from 'lodash'; // 引入lodash库中的防抖函数
-import { ip } from '../../common'
-import { router, useLocalSearchParams, useGlobalSearchParams } from 'expo-router';
+import { ip } from '../../static'
 
 const GeneratePasswordPage = () => {
     const [number, setNumber] = useState('');
@@ -39,13 +38,11 @@ const GeneratePasswordPage = () => {
             type: 'generate',
             time: number
         };
-
         const url = `${ip}?` + Object.keys(params)
             .map(key => `${key}=${encodeURIComponent(params[key])}`)
             .join('&');
-
         await fetch(url)
-            .then(response => response.text())
+        .then(response => response.text())
             .then(result => {
                 const { msg, code, password } = JSON.parse(result) || {}
                 if (code === 'success') {

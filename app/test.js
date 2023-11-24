@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Alert, StyleSheet, Clipboard, Dimensions } from 'react-native';
 import { debounce } from 'lodash'; // 引入lodash库中的防抖函数
-import { ip } from '../common'
 import { router,useLocalSearchParams,useGlobalSearchParams } from 'expo-router';
 
 const GeneratePasswordPage = () => {

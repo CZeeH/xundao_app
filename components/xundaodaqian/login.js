@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { router, useRouter } from 'expo-router';
 import { View, Text, TextInput, Button, Alert, StyleSheet, Dimensions } from 'react-native';
-import { ip } from '../../common'
+import { ip } from '../../static'
 
 class LoginPage extends Component {
   constructor(props) {
@@ -20,7 +20,6 @@ class LoginPage extends Component {
     const url = `${ip}?` + Object.keys(params)
       .map(key => `${key}=${encodeURIComponent(params[key])}`)
       .join('&');
-
     fetch(url)
       .then(response => response.text())
       .then(result => {
@@ -38,12 +37,10 @@ class LoginPage extends Component {
       .catch(error => {
         Alert.alert(
           '网络异常',
-          '请联系客服',
+          `${error}`,
         )
       })
   }
-
-
   render() {
     const { password } = this.state;
     return (
